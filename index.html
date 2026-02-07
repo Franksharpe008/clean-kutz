@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Clean Kutz Barber Shop - Premium appointment-only grooming in Rogers, AR. Precision cuts, professional service, zero wait times.">
+<title>Clean Kutz | Precision Grooming Rogers AR</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --gold: #D4AF37;
+    --gold-light: #F4E8C1;
+    --dark: #0a0a0a;
+    --darker: #050505;
+    --gray: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--darker);
+    color: white;
+    overflow-x: hidden;
+    cursor: none;
+}
+
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Custom Cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s, background 0.2s;
+    mix-blend-mode: difference;
+}
+
+.cursor.hover {
+    transform: scale(2);
+    background: var(--gold);
+}
+
+.cursor-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Noise Texture Overlay */
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Gold Gradient Text */
+.text-gold {
+    background: linear-gradient(135deg, #D4AF37 0%, #F4E8C1 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Navigation */
+.nav-glass {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.9) 100%), url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1920&h=1080&fit=crop') center/cover;
+    z-index: -2;
+}
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    z-index: -1;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(100px, 100px);
+    }
+}
+
+/* Magnetic Button */
+.magnetic-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.5);
+}
+
+.magnetic-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px -15px rgba(212, 175, 55, 0.6);
+}
+
+.magnetic-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.magnetic-btn:hover::before {
+    left: 100%;
+}
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Service Cards */
+.service-card {
+    background: linear-gradient(145deg, #111 0%, #0a0a0a 100%);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.service-card:hover::before {
+    transform: translateX(100%);
+}
+
+.service-card:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -20px rgba(212, 175, 55, 0.2);
+}
+
+/* Gallery Grid */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: grayscale(100%);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* Booking Calendar */
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+.calendar-day:hover:not(.disabled) {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: var(--gold);
+}
+
+.calendar-day.selected {
+    background: var(--gold);
+    color: #000;
+    font-weight: 600;
+}
+
+.calendar-day.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Time Slots */
+.time-slot {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+.time-slot:hover:not(.booked) {
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.time-slot.selected {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+    font-weight: 600;
+}
+
+.time-slot.booked {
+    opacity: 0.3;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Testimonial Slider */
+.testimonial-slide {
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.5s;
+    width: 100%;
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.5);
+    cursor: pointer;
+    z-index: 50;
+    transition: transform 0.3s;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+    }
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+/* Loading Animation */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: var(--darker);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-scissors {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    animation: snip 1s ease-in-out infinite;
+}
+
+@keyframes snip {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-15deg);
+    }
+}
+
+.loader-text {
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--darker);
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 4px;
+}
+
+/* Input Styling */
+input, select, textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+/* Success Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #111 0%, #0a0a0a 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cursor, .cursor-dot {
+        display: none;
+    }
+    body {
+        cursor: auto;
+    }
+}
+</style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-scissors">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="6" cy="6" r="3"/>
+                <circle cx="6" cy="18" r="3"/>
+                <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+                <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+                <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+            </svg>
+        </div>
+        <div class="loader-text">CLEAN KUTZ</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursor-dot"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-glass fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-3" onclick="scrollToSection('hero')">
+                    <div class="w-10 h-10 border-2 border-[#D4AF37] flex items-center justify-center">
+                        <span class="text-[#D4AF37] font-serif font-bold text-xl">CK</span>
+                    </div>
+                    <span class="font-serif text-xl tracking-wider">CLEAN KUTZ</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" onclick="scrollToSection('services')" class="text-sm tracking-widest hover:text-[#D4AF37] transition-colors">SERVICES</a>
+                    <a href="#gallery" onclick="scrollToSection('gallery')" class="text-sm tracking-widest hover:text-[#D4AF37] transition-colors">GALLERY</a>
+                    <a href="#booking" onclick="scrollToSection('booking')" class="text-sm tracking-widest hover:text-[#D4AF37] transition-colors">BOOK NOW</a>
+                    <a href="#contact" onclick="scrollToSection('contact')" class="text-sm tracking-widest hover:text-[#D4AF37] transition-colors">CONTACT</a>
+                </div>
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="absolute top-6 right-6" onclick="toggleMobileMenu()">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#services" onclick="scrollToSection('services'); toggleMobileMenu();" class="text-2xl font-serif tracking-widest">SERVICES</a>
+        <a href="#gallery" onclick="scrollToSection('gallery'); toggleMobileMenu();" class="text-2xl font-serif tracking-widest">GALLERY</a>
+        <a href="#booking" onclick="scrollToSection('booking'); toggleMobileMenu();" class="text-2xl font-serif tracking-widest text-[#D4AF37]">BOOK NOW</a>
+        <a href="#contact" onclick="scrollToSection('contact'); toggleMobileMenu();" class="text-2xl font-serif tracking-widest">CONTACT</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 border border-[#D4AF37]/30 rounded-full text-sm tracking-widest text-[#D4AF37] reveal">
+                        <span class="w-2 h-2 bg-[#D4AF37] rounded-full animate-pulse"></span>
+                        APPOINTMENT ONLY • ROGERS, AR
+                    </div>
+                    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-none reveal" style="transition-delay: 0.1s">
+                        PRECISION<br>
+                        <span class="text-gold">GROOMING</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg max-w-md reveal" style="transition-delay: 0.2s">
+                        No walk-ins. No waiting. Just expert craftsmanship and attention to detail. Your time is valuable—spend it wisely.
+                    </p>
+                    <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 0.3s">
+                        <button onclick="scrollToSection('booking')" class="magnetic-btn">Book Appointment</button>
+                        <button onclick="scrollToSection('services')" class="px-8 py-4 border border-white/20 hover:border-[#D4AF37] transition-colors text-sm tracking-widest">VIEW SERVICES</button>
+                    </div>
+                </div>
+                <div class="relative hidden lg:block reveal" style="transition-delay: 0.5s">
+                    <div class="relative z-10">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&h=800&fit=crop" alt="Premium Barber Chair" class="w-full h-[600px] object-cover grayscale contrast-125">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 border border-[#D4AF37]/30"></div>
+                    <div class="absolute -top-6 -right-6 w-48 h-48 bg-[#D4AF37]/10"></div>
+                </div>
+            </div>
+            <div class="flex gap-8 pt-8 reveal" style="transition-delay: 0.4s">
+                <div>
+                    <p class="text-3xl font-serif text-[#D4AF37]">4.9</p>
+                    <p class="text-xs text-gray-500 tracking-widest mt-1">GOOGLE RATING</p>
+                </div>
+                <div class="w-px bg-white/10"></div>
+                <div>
+                    <p class="text-3xl font-serif text-[#D4AF37]">15+</p>
+                    <p class="text-xs text-gray-500 tracking-widest mt-1">YEARS EXPERIENCE</p>
+                </div>
+                <div class="w-px bg-white/10"></div>
+                <div>
+                    <p class="text-3xl font-serif text-[#D4AF37]">0</p>
+                    <p class="text-xs text-gray-500 tracking-widest mt-1">WAIT TIME</p>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-[#D4AF37]"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <p class="text-[#D4AF37] text-sm tracking-[0.3em] mb-4">THE EXPERIENCE</p>
+                <h2 class="font-serif text-4xl md:text-6xl">SERVICES</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="service-card p-8 reveal">
+                    <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center mb-6">
+                        <i data-lucide="scissors" class="w-6 h-6 text-[#D4AF37]"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2">The Executive</h3>
+                    <p class="text-gray-400 text-sm mb-4">Precision haircut with hot towel treatment and neck shave. The complete package for modern professional.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                        <span class="text-2xl font-serif text-[#D4AF37]">$45</span>
+                        <span class="text-xs text-gray-500">45 MIN</span>
+                    </div>
+                </div>
+                <div class="service-card p-8 reveal" style="transition-delay: 0.1s">
+                    <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center mb-6">
+                        <i data-lucide="crown" class="w-6 h-6 text-[#D4AF37]"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2">The Classic</h3>
+                    <p class="text-gray-400 text-sm mb-4">Traditional barber cut with clippers and shears. Clean, sharp, timeless. Includes neckline cleanup.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                        <span class="text-2xl font-serif text-[#D4AF37]">$35</span>
+                        <span class="text-xs text-gray-500">30 MIN</span>
+                    </div>
+                </div>
+                <div class="service-card p-8 reveal" style="transition-delay: 0.2s">
+                    <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center mb-6">
+                        <i data-lucide="sparkles" class="w-6 h-6 text-[#D4AF37]"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2">Royal Shave</h3>
+                    <p class="text-gray-400 text-sm mb-4">Straight razor shave with hot towels, premium oils, and facial massage. The ultimate relaxation.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                        <span class="text-2xl font-serif text-[#D4AF37]">$40</span>
+                        <span class="text-xs text-gray-500">40 MIN</span>
+                    </div>
+                </div>
+                <div class="service-card p-8 reveal" style="transition-delay: 0.3s">
+                    <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center mb-6">
+                        <i data-lucide="user" class="w-6 h-6 text-[#D4AF37]"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2">Beard Sculpting</h3>
+                    <p class="text-gray-400 text-sm mb-4">Shape, trim, and condition. Includes hot towel treatment and premium beard oil application.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                        <span class="text-2xl font-serif text-[#D4AF37]">$30</span>
+                        <span class="text-xs text-gray-500">25 MIN</span>
+                    </div>
+                </div>
+                <div class="service-card p-8 reveal" style="transition-delay: 0.4s">
+                    <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center mb-6">
+                        <i data-lucide="baby" class="w-6 h-6 text-[#D4AF37]"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2">Young Gentleman</h3>
+                    <p class="text-gray-400 text-sm mb-4">Haircut for ages 12 and under. Patient, professional service for next generation.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                        <span class="text-2xl font-serif text-[#D4AF37]">$25</span>
+                        <span class="text-xs text-gray-500">30 MIN</span>
+                    </div>
+                </div>
+                <div class="service-card p-8 reveal" style="transition-delay: 0.5s">
+                    <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center mb-6">
+                        <i data-lucide="star" class="w-6 h-6 text-[#D4AF37]"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2">The Full Package</h3>
+                    <p class="text-gray-400 text-sm mb-4">Haircut, beard sculpting, and royal shave. The complete transformation experience.</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                        <span class="text-2xl font-serif text-[#D4AF37]">$95</span>
+                        <span class="text-xs text-gray-500">90 MIN</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-32 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-16 reveal">
+                <div>
+                    <p class="text-[#D4AF37] text-sm tracking-[0.3em] mb-4">THE CRAFT</p>
+                    <h2 class="font-serif text-4xl md:text-6xl">GALLERY</h2>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 text-sm tracking-widest hover:text-[#D4AF37] transition-colors" onclick="showToast('Instagram feed coming soon')">VIEW INSTAGRAM <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="gallery-item aspect-[3/4] reveal">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=600&fit=crop" alt="Haircut" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <p class="font-serif text-lg">Classic Fade</p>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-[3/4] reveal" style="transition-delay: 0.1s">
+                    <img src="https://images.unsplash.com/photo-1599351431613-18ef1fdd27e1?w=400&h=600&fit=crop" alt="Beard" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <p class="font-serif text-lg">Beard Sculpt</p>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-[3/4] reveal" style="transition-delay: 0.2s">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=600&fit=crop" alt="Straight Razor" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <p class="font-serif text-lg">Straight Razor</p>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-[3/4] reveal" style="transition-delay: 0.3s">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=400&h=600&fit=crop" alt="Style" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <p class="font-serif text-lg">Textured Crop</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 relative">
+            <div class="text-center mb-16 reveal">
+                <p class="text-[#D4AF37] text-sm tracking-[0.3em] mb-4">TESTIMONIALS</p>
+                <h2 class="font-serif text-4xl md:text-5xl">CLIENT WORDS</h2>
+            </div>
+            <div class="relative h-64 reveal" id="testimonialContainer">
+                <div class="testimonial-slide active text-center">
+                    <i data-lucide="quote" class="w-12 h-12 text-[#D4AF37]/30 mx-auto mb-6"></i>
+                    <p class="text-xl md:text-2xl font-light italic mb-8">"Finally, a barbershop that respects my time. No waiting, no hassle—just a perfect cut every single time. The appointment system is a game changer."</p>
+                    <div>
+                        <p class="font-serif text-[#D4AF37]">Michael R.</p>
+                        <p class="text-sm text-gray-500">Rogers, AR • Google Review</p>
+                    </div>
+                </div>
+                <div class="testimonial-slide text-center">
+                    <i data-lucide="quote" class="w-12 h-12 text-[#D4AF37]/30 mx-auto mb-6"></i>
+                    <p class="text-xl md:text-2xl font-light italic mb-8">"The attention to detail is unmatched. I've been coming here for two years and I've never had a bad experience. Worth every penny."</p>
+                    <div>
+                        <p class="font-serif text-[#D4AF37]">David S.</p>
+                        <p class="text-sm text-gray-500">Bentonville, AR • Google Review</p>
+                    </div>
+                </div>
+                <div class="testimonial-slide text-center">
+                    <i data-lucide="quote" class="w-12 h-12 text-[#D4AF37]/30 mx-auto mb-6"></i>
+                    <p class="text-xl md:text-2xl font-light italic mb-8">"Best straight razor shave I've ever had. The hot towel treatment alone is worth the visit. This is what grooming should be."</p>
+                    <div>
+                        <p class="font-serif text-[#D4AF37]">James T.</p>
+                        <p class="text-sm text-gray-500">Fayetteville, AR • Google Review</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center gap-2 mt-8">
+                <button onclick="setTestimonial(0)" class="w-3 h-3 rounded-full bg-[#D4AF37] transition-all" id="dot0"></button>
+                <button onclick="setTestimonial(1)" class="w-3 h-3 rounded-full bg-white/20 transition-all" id="dot1"></button>
+                <button onclick="setTestimonial(2)" class="w-3 h-3 rounded-full bg-white/20 transition-all" id="dot2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-32 bg-[#050505]">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <p class="text-[#D4AF37] text-sm tracking-[0.3em] mb-4">RESERVATIONS</p>
+                    <h2 class="font-serif text-4xl md:text-6xl mb-6">BOOK YOUR<br>APPOINTMENT</h2>
+                    <p class="text-gray-400 mb-8">Select your preferred date and time. Appointments are required—no walk-ins. A $10 deposit secures your slot.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37]"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold mb-1">Location</p>
+                                <p class="text-gray-400 text-sm">1400 W Walnut St #114<br>Rogers, AR 72756</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5 text-[#D4AF37]"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold mb-1">Hours</p>
+                                <p class="text-gray-400 text-sm">Tue - Fri: 9AM - 7PM<br>Sat: 8AM - 5PM<br>Sun - Mon: Closed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 border border-[#D4AF37]/30 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37]"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold mb-1">Phone</p>
+                                <p class="text-gray-400 text-sm">(479) 631-5889</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#0a0a0a] border border-white/10 p-8 reveal" style="transition-delay: 0.2s">
+                    <form id="bookingForm" onsubmit="handleBooking(event)">
+                        <div class="mb-6">
+                            <label class="block text-sm tracking-widest mb-2">SELECT SERVICE</label>
+                            <select id="service" required class="mb-4" onchange="updatePrice()">
+                                <option value="">Choose a service...</option>
+                                <option value="executive" data-price="45">The Executive - $45</option>
+                                <option value="classic" data-price="35">The Classic - $35</option>
+                                <option value="shave" data-price="40">Royal Shave - $40</option>
+                                <option value="beard" data-price="30">Beard Sculpting - $30</option>
+                                <option value="young" data-price="25">Young Gentleman - $25</option>
+                                <option value="package" data-price="95">The Full Package - $95</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm tracking-widest mb-2">SELECT DATE</label>
+                            <div class="grid grid-cols-7 gap-1 mb-2 text-center text-xs text-gray-500">
+                                <div>SU</div><div>MO</div><div>TU</div><div>WE</div><div>TH</div><div>FR</div><div>SA</div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-1" id="calendar">
+                                <!-- Calendar generated by JS -->
+                            </div>
+                            <input type="hidden" id="selectedDate" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm tracking-widest mb-2">AVAILABLE TIMES</label>
+                            <div class="grid grid-cols-3 gap-2" id="timeSlots">
+                                <div class="time-slot" onclick="selectTime(this, '9:00 AM')">9:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this, '10:00 AM')">10:00 AM</div>
+                                <div class="time-slot" onclick="selectTime(this, '11:00 AM')">11:00 AM</div>
+                                <div class="time-slot booked">12:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '1:00 PM')">1:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '2:00 PM')">2:00 PM</div>
+                                <div class="time-slot booked">3:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '4:00 PM')">4:00 PM</div>
+                                <div class="time-slot" onclick="selectTime(this, '5:00 PM')">5:00 PM</div>
+                            </div>
+                            <input type="hidden" id="selectedTime" required>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm tracking-widest mb-2">YOUR INFO</label>
+                            <input type="text" placeholder="Full Name" required class="mb-3">
+                            <input type="tel" placeholder="Phone Number" required class="mb-3">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-white/10">
+                            <div>
+                                <p class="text-xs text-gray-500">Total</p>
+                                <p class="text-2xl font-serif text-[#D4AF37]" id="totalPrice">$0</p>
+                            </div>
+                            <button type="submit" class="magnetic-btn">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="reveal">
+                    <p class="text-[#D4AF37] text-sm tracking-[0.3em] mb-4">GET IN TOUCH</p>
+                    <h2 class="font-serif text-4xl md:text-6xl mb-6">VISIT US</h2>
+                    <p class="text-gray-400 mb-8">Located in the heart of Rogers, AR. Easy access from I-49, plenty of parking available.</p>
+                    <div class="aspect-video bg-[#111] border border-white/10 relative overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3221.1234567890123!2d-94.12345678901234!3d36.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDA3JzI0LjQiTiA5NMKwMDcnMjQuNCJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%);" allowfullscreen="" loading="lazy" class="absolute inset-0"></iframe>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s">
+                    <form class="space-y-6" onsubmit="handleContact(event)">
+                        <div>
+                            <label class="block text-sm tracking-widest mb-2">NAME</label>
+                            <input type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm tracking-widest mb-2">EMAIL</label>
+                            <input type="email" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm tracking-widest mb-2">MESSAGE</label>
+                            <textarea rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="magnetic-btn w-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] border-t border-white/10 py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 border-2 border-[#D4AF37] flex items-center justify-center">
+                            <span class="text-[#D4AF37] font-serif font-bold text-xl">CK</span>
+                        </div>
+                        <span class="font-serif text-xl tracking-wider">CLEAN KUTZ</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">Precision grooming for modern gentleman. Appointment only.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#services" class="hover:text-[#D4AF37] transition-colors">Services</a></li>
+                        <li><a href="#gallery" class="hover:text-[#D4AF37] transition-colors">Gallery</a></li>
+                        <li><a href="#booking" class="hover:text-[#D4AF37] transition-colors">Book Now</a></li>
+                        <li><a href="#" class="hover:text-[#D4AF37] transition-colors" onclick="showToast('Gift cards coming soon')">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>1400 W Walnut St #114</li>
+                        <li>Rogers, AR 72756</li>
+                        <li>(479) 631-5889</li>
+                        <li>info@cleankutz.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg mb-4">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all" onclick="showToast('Instagram coming soon')"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all" onclick="showToast('Facebook coming soon')"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#D4AF37] hover:text-[#D4AF37] transition-all" onclick="showToast('Twitter coming soon')"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-600">© 2024 Clean Kutz Barber Shop. All rights reserved.</p>
+                <div class="flex gap-6 text-sm text-gray-600">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="scrollToSection('booking')" aria-label="Book Now">
+        <i data-lucide="calendar" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="w-16 h-16 rounded-full bg-[#D4AF37]/20 flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8 text-[#D4AF37]"></i>
+            </div>
+            <h3 class="font-serif text-2xl mb-4">Booking Confirmed!</h3>
+            <p class="text-gray-400 mb-6">Your appointment has been scheduled. A confirmation text has been sent to your phone.</p>
+            <button onclick="closeModal()" class="magnetic-btn">Done</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-[#111] border border-[#D4AF37]/30 px-6 py-3 rounded-full text-sm opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.querySelectorAll('.reveal').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('active'), i * 100);
+                });
+            }, 1500);
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+            cursorDot.style.left = e.clientX - 2 + 'px';
+            cursorDot.style.top = e.clientY - 2 + 'px';
+        });
+
+        document.querySelectorAll('a, button, .gallery-item, .service-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Navigation
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                navbar.classList.add('nav-glass');
+            } else {
+                navbar.classList.remove('nav-glass');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Testimonials
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+        const dots = [
+            document.getElementById('dot0'),
+            document.getElementById('dot1'),
+            document.getElementById('dot2')
+        ];
+
+        function setTestimonial(index) {
+            testimonials[currentTestimonial].classList.remove('active');
+            dots[currentTestimonial].classList.remove('bg-[#D4AF37]');
+            dots[currentTestimonial].classList.add('bg-white/20');
+
+            currentTestimonial = index;
+
+            testimonials[currentTestimonial].classList.add('active');
+            dots[currentTestimonial].classList.remove('bg-white/20');
+            dots[currentTestimonial].classList.add('bg-[#D4AF37]');
+        }
+
+        setInterval(() => {
+            setTestimonial((currentTestimonial + 1) % testimonials.length);
+        }, 5000);
+
+        // Calendar Generation
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+
+            calendar.innerHTML = '';
+
+            // Empty cells for days before start of month
+            for (let i = 0; i < firstDay; i++) {
+                calendar.innerHTML += '<div></div>';
+            }
+
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(currentYear, currentMonth, day);
+                const isPast = date < today;
+                const isSunday = date.getDay() === 0;
+                const isMonday = date.getDay() === 1;
+                const disabled = isPast || isSunday || isMonday ? 'disabled' : '';
+
+                calendar.innerHTML += `<div class="calendar-day ${disabled}" onclick="selectDate(this, ${day})">${day}</div>`;
+            }
+        }
+
+        generateCalendar();
+
+        function selectDate(element, day) {
+            if (element.classList.contains('disabled')) return;
+
+            document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('selectedDate').value = day;
+        }
+
+        function selectTime(element, time) {
+            if (element.classList.contains('booked')) return;
+
+            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('selectedTime').value = time;
+        }
+
+        function updatePrice() {
+            const select = document.getElementById('service');
+            const option = select.options[select.selectedIndex];
+            const price = option.getAttribute('data-price') || 0;
+            document.getElementById('totalPrice').textContent = '$' + price;
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+
+            const date = document.getElementById('selectedDate').value;
+            const time = document.getElementById('selectedTime').value;
+            const service = document.getElementById('service').value;
+
+            if (!date || !time || !service) {
+                showToast('Please select date, time, and service');
+                return;
+            }
+
+            document.getElementById('successModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.getElementById('bookingForm').reset();
+            document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+            updatePrice();
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            showToast('Message sent successfully!');
+            e.target.reset();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        // Magnetic button effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+    </script>
+</body>
+</html>
